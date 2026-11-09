@@ -19,6 +19,19 @@
     { id: 'AV-1010', marca:'Toyota', modelo:'Hilux SRX', ano:2022, categoria:'Picape', preco:249900, custo:216000, status:'Reservado', cadastro:'2026-08-19', venda:'' },
     { id: 'AV-1011', marca:'Volkswagen', modelo:'Polo Highline', ano:2024, categoria:'Hatch', preco:104900, custo:88900, status:'Vendido', cadastro:'2026-06-25', venda:'2026-07-30' },
     { id: 'AV-1012', marca:'Chevrolet', modelo:'Tracker LTZ', ano:2023, categoria:'SUV', preco:132900, custo:111000, status:'Disponível', cadastro:'2026-09-01', venda:'' }
+,
+    { id: 'AV-1013', marca:'Toyota', modelo:'Corolla Cross XRE', ano:2022, categoria:'SUV', preco:158900, custo:139200, status:'Disponível', cadastro:'2026-08-12', venda:'' },
+    { id: 'AV-1014', marca:'Honda', modelo:'HR-V EX', ano:2022, categoria:'SUV', preco:127900, custo:112500, status:'Disponível', cadastro:'2026-09-03', venda:'' },
+    { id: 'AV-1015', marca:'Jeep', modelo:'Renegade Longitude', ano:2022, categoria:'SUV', preco:112900, custo:98700, status:'Disponível', cadastro:'2026-08-25', venda:'' },
+    { id: 'AV-1016', marca:'Hyundai', modelo:'Creta Plus', ano:2022, categoria:'SUV', preco:114900, custo:99500, status:'Disponível', cadastro:'2026-09-14', venda:'' },
+    { id: 'AV-1017', marca:'Fiat', modelo:'Argo Drive', ano:2022, categoria:'Hatch', preco:73900, custo:62600, status:'Disponível', cadastro:'2026-09-11', venda:'' },
+    { id: 'AV-1018', marca:'Fiat', modelo:'Mobi Trekking', ano:2022, categoria:'Hatch', preco:60900, custo:51400, status:'Disponível', cadastro:'2026-10-01', venda:'' },
+    { id: 'AV-1019', marca:'Renault', modelo:'Kwid Outsider', ano:2022, categoria:'Hatch', preco:58900, custo:48800, status:'Disponível', cadastro:'2026-10-03', venda:'' },
+    { id: 'AV-1020', marca:'Fiat', modelo:'Strada Endurance', ano:2023, categoria:'Picape', preco:99900, custo:85200, status:'Disponível', cadastro:'2026-09-30', venda:'' },
+    { id: 'AV-1021', marca:'Fiat', modelo:'Toro Volcano', ano:2022, categoria:'Picape', preco:148900, custo:129500, status:'Reservado', cadastro:'2026-07-22', venda:'' },
+    { id: 'AV-1022', marca:'Chevrolet', modelo:'Montana LTZ', ano:2023, categoria:'Picape', preco:126900, custo:112400, status:'Disponível', cadastro:'2026-09-19', venda:'' },
+    { id: 'AV-1023', marca:'Fiat', modelo:'Cronos Drive', ano:2022, categoria:'Sedã', preco:81900, custo:70500, status:'Vendido', cadastro:'2026-07-01', venda:'2026-09-16' },
+    { id: 'AV-1024', marca:'Peugeot', modelo:'208 Active', ano:2022, categoria:'Hatch', preco:76900, custo:66900, status:'Vendido', cadastro:'2026-07-18', venda:'2026-10-11' }
   ];
   const round = n => Math.round((n + Number.EPSILON) * 100) / 100;
   function number(value) { const n = Number(value); return Number.isFinite(n) ? n : 0; }
@@ -35,6 +48,29 @@
     if (v.preco < 0 || v.custo < 0 || !Number.isFinite(v.preco) || !Number.isFinite(v.custo)) throw new Error('Preço e custo devem ser positivos.');
     if (v.status !== 'Vendido') v.venda = '';
     return v;
+  }
+  const LEGACY_DEMO_IDS = new Set(DEMO.slice(0,12).map(v=>v.id));
+  const CATEGORY_LOOKUP = new Map(DEMO.map(v=>[v.marca.toLowerCase()+'|'+v.modelo.toLowerCase(),v.categoria]));
+  function categoryFor(item) {
+    const key=String(item.marca||'').trim().toLowerCase()+'|'+String(item.modelo||'').trim().toLowerCase();
+    return CATEGORY_LOOKUP.get(key) || item.categoria || 'Outros';
+  }
+  function mergeLegacyDemo(saved) {
+    if(!Array.isArray(saved)) return DEMO.map(x=>({...x}));
+    const original=saved.map(v=>({...normalizeVehicle(v),imagem_url:v.imagem_url||''}));
+    // Expand only the old 12-vehicle fictitious inventory; never append demo cars to an imported custom CSV.
+    if(original.length===0 || original.length>12 || !original.every(v=>LEGACY_DEMO_IDS.has(v.id))) return original;
+    return [...original,...DEMO.slice(12).map(v=>({...v}))];
+  }
+  function loadDemoInventory(storage) {
+    try {
+      const raw=storage.getItem('autostock-analytics-v1');
+      if(!raw) return DEMO.map(v=>({...v}));
+      const saved=JSON.parse(raw);
+      const updated=mergeLegacyDemo(saved);
+      if(Array.isArray(saved) && updated.length>saved.length) storage.setItem('autostock-analytics-v1',JSON.stringify(updated));
+      return updated;
+    }catch(e){return DEMO.map(v=>({...v}));}
   }
   function metrics(items) {
     const available = items.filter(v => v.status === 'Disponível');
@@ -96,5 +132,5 @@
     return '\uFEFF'+header.join(';')+'\r\n'+items.map(v=>header.map(k=>quote(v[k])).join(';')).join('\r\n');
   }
   function escapeHTML(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
-  return {STATUS, DEMO, metrics, byMonth, normalizeVehicle, parseCSV, toCSV, escapeHTML};
+  return {STATUS, DEMO, categoryFor, mergeLegacyDemo, loadDemoInventory, metrics, byMonth, normalizeVehicle, parseCSV, toCSV, escapeHTML};
 });

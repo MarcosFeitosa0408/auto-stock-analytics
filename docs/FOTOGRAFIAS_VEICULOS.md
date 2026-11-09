@@ -20,3 +20,23 @@ As imagens abaixo são apenas **referências do modelo**, não fotografias dos v
 A imagem HTTPS informada pelo administrador tem prioridade. Se não existir correspondência segura, aparece a imagem neutra "Foto não cadastrada" e não uma foto de modelo incorreto.
 
 Para novos veículos, use o atalho "Pesquisar fotografia do modelo no Wikimedia Commons" no cadastro administrativo, confirme o modelo e a licença e cole a URL HTTPS. Para anúncios comerciais reais, use **fotos do próprio carro**.
+
+
+## Ampliação do catálogo brasileiro — 12 referências adicionais
+
+As imagens identificam marca e modelo (muitas são de versões/mercados próximos). **Nunca representam um carro real à venda**; todas as informações de preço são exemplos fictícios.
+
+| Modelo | Ano | Referência | Autor | Licença | Fonte |
+|---|---:|---|---|---|---|
+| Toyota Corolla Cross XRE | 2022 | Toyota Corolla Cross SEG, 2022 (Brasil/América do Sul) | RL GNZLZ | CC BY-SA 2.0 | [Wikimedia](https://commons.wikimedia.org/wiki/File:Toyota_Corolla_Cross_2.0_SEG_2022_(52601788623).jpg) |
+| Honda HR-V EX | 2022 | Honda HR-V EX, 2022 (Brasil) | Just a Man | CC BY 4.0 | [Wikimedia](https://commons.wikimedia.org/wiki/File:2022_Honda_HR-V_1.8_EX_(Brazil).jpg) |
+| Jeep Renegade Longitude | 2022 | Jeep Renegade, 2022 (outra versão) | Calreyn88 | CC BY-SA 4.0 | [Wikimedia](https://commons.wikimedia.org/wiki/File:2022_Jeep_Renegade.jpg) |
+| Hyundai Creta Plus | 2022 | Hyundai Creta Plus, 2022 (Chile/outra configuração) | RL GNZLZ | CC BY-SA 2.0 | [Wikimedia](https://commons.wikimedia.org/wiki/File:2022_Hyundai_Creta_1.6_Plus.jpg) |
+| Fiat Argo Drive | 2022 | Fiat Argo 1.0, 2022 (Brasil) | Arthur RPereira | CC0 1.0 | [Wikimedia](https://commons.wikimedia.org/wiki/File:Frente_Fiat_Argo_1.0_2022.jpg) |
+| Fiat Mobi Trekking | 2022 | Fiat Mobi Trekking, 2022 | RL GNZLZ | CC BY-SA 2.0 | [Wikimedia](https://commons.wikimedia.org/wiki/File:2022_Fiat_Mobi_1.0_Trekking.jpg) |
+| Renault Kwid Outsider | 2022 | Renault Kwid Outsider, 2022 | RL GNZLZ | CC BY-SA 2.0 | [Wikimedia](https://commons.wikimedia.org/wiki/File:Renault_Kwid_1.0_Outsider_2022.jpg) |
+| Fiat Strada Endurance | 2023 | Fiat Strada Endurance, 2023 | Maxi-Napo-99 | CC BY 4.0 | [Wikimedia](https://commons.wikimedia.org/wiki/File:2023_Fiat_Strada_1.4_Fire_Endurance.jpg) |
+| Fiat Toro Volcano | 2022 | Fiat Toro Volcano, 2022 | Just a Man | CC BY 4.0 | [Wikimedia](https://commons.wikimedia.org/wiki/File:2022_Fiat_Toro_2.0_Multijet_Volcano.jpg) |
+| Chevrolet Montana LTZ | 2023 | Chevrolet Montana LTZ, 2023 | Maxi-Napo-99 | CC BY-SA 4.0 | [Wikimedia](https://commons.wikimedia.org/wiki/File:2023_Chevrolet_Montana_LTZ_front.jpg) |
+| Fiat Cronos Drive | 2022 | Fiat Cronos Drive, 2022 | Just a Man | CC BY 4.0 | [Wikimedia](https://commons.wikimedia.org/wiki/File:2022_Fiat_Cronos_1.3_Drive_GSE_(front_view).jpg) |
+| Peugeot 208 Active | 2022 | Peugeot 208 Active, 2022 | Maxi-Napo-99 | CC BY 4.0 | [Wikimedia](https://commons.wikimedia.org/wiki/File:2022_Peugeot_208_1.6_Active.jpg) |
