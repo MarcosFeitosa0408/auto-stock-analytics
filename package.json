@@ -1,0 +1,8 @@
+{
+  "name": "auto-stock-analytics",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Gestão e indicadores de estoque de veículos — projeto demonstrativo de BI",
+  "scripts": { "test": "node --test" },
+  "engines": { "node": ">=18" }
+}

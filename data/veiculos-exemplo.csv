@@ -1,0 +1,13 @@
+﻿id;marca;modelo;ano;categoria;preco;custo;status;cadastro;venda
+"AV-1001";"Toyota";"Corolla XEi";"2022";"Sedã";"124900";"108000";"Disponível";"2026-07-12";""
+"AV-1002";"Honda";"Civic Touring";"2021";"Sedã";"139900";"115000";"Vendido";"2026-06-18";"2026-09-14"
+"AV-1003";"Jeep";"Compass Longitude";"2023";"SUV";"158500";"141000";"Disponível";"2026-08-03";""
+"AV-1004";"Volkswagen";"T-Cross Comfortline";"2022";"SUV";"119900";"101500";"Reservado";"2026-08-15";""
+"AV-1005";"Hyundai";"HB20 Platinum";"2024";"Hatch";"91900";"76600";"Vendido";"2026-07-01";"2026-08-22"
+"AV-1006";"Fiat";"Pulse Audace";"2023";"SUV";"105900";"90800";"Disponível";"2026-08-22";""
+"AV-1007";"Chevrolet";"Onix Premier";"2022";"Hatch";"85900";"70900";"Disponível";"2026-07-29";""
+"AV-1008";"Nissan";"Kicks Exclusive";"2023";"SUV";"129900";"110000";"Vendido";"2026-07-09";"2026-10-05"
+"AV-1009";"Renault";"Duster Iconic";"2021";"SUV";"94900";"81300";"Disponível";"2026-09-04";""
+"AV-1010";"Toyota";"Hilux SRX";"2022";"Picape";"249900";"216000";"Reservado";"2026-08-19";""
+"AV-1011";"Volkswagen";"Polo Highline";"2024";"Hatch";"104900";"88900";"Vendido";"2026-06-25";"2026-07-30"
+"AV-1012";"Chevrolet";"Tracker LTZ";"2023";"SUV";"132900";"111000";"Disponível";"2026-09-01";""
