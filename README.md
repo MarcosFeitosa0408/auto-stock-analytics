@@ -99,3 +99,8 @@ tests/                       # Testes automatizados
 ```
 
 **Autor:** Marcos Feitosa · [GitHub](https://github.com/MarcosFeitosa0408) · [Portfólio](https://marcosfeitosa-dev.com.br/)
+
+
+## Fotos por marca e modelo
+
+O catálogo associa referências fotográficas do Wikimedia Commons a cada um dos 12 modelos demonstrativos, com indicação de créditos e licença. As fotos são exemplos da geração/modelo, e **não fotos do veículo à venda**; algumas versões e anos diferem. Fotos HTTPS fornecidas no cadastro têm prioridade. Quando não há correspondência, a interface mostra um aviso de foto não cadastrada. Consulte [fontes e créditos](docs/FOTOGRAFIAS_VEICULOS.md).

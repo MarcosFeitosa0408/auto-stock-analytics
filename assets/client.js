@@ -7,11 +7,10 @@
   const key = 'autostock-demo-requests-v1';
   const inventoryKey = 'autostock-analytics-v1';
   let demoInventory=[];
-  const imagePaths=['assets/photos/suv-azul.jpg','assets/photos/suv-prata.jpg','assets/photos/suv-executivo.jpg'];
+  const Photos=window.AutoStockPhotos;
   const ctx=await window.AutoAuth.guard('cliente');if(!ctx)return;
   let cars=[],requests=[];
   function toast(msg){$('client-toast').textContent=msg;$('client-toast').classList.add('show');setTimeout(()=>$('client-toast').classList.remove('show'),3800);}
-  function photo(car,index){if(car.imagem_url&&/^https:\/\//i.test(car.imagem_url))return car.imagem_url;return imagePaths[index % imagePaths.length];}
   async function load(){
     if(ctx.mode==='demo'){
       try { const saved=JSON.parse(localStorage.getItem(inventoryKey)||'null');
@@ -32,7 +31,11 @@
     if($('client-sort').value==='menor')list.sort((a,b)=>a.preco-b.preco);
     if($('client-sort').value==='maior')list.sort((a,b)=>b.preco-a.preco);
     $('client-count').textContent=`${list.length} veículo(s) encontrado(s)`;
-    $('client-cards').innerHTML=list.length?list.map((v,index)=>`<article class="vehicle-card"><div class="photo-wrap"><img class="vehicle-photo" src="${safe(photo(v,index))}" alt="Foto ilustrativa de veículo ${safe(v.marca+' '+v.modelo)}" loading="lazy"><span class="stock-tag">● Disponível</span></div><div class="vehicle-detail"><h3>${safe(v.marca+' '+v.modelo)}</h3><span class="vehicle-meta">${safe(v.ano)} · ${safe(v.categoria)}</span><strong class="vehicle-price">${cash(v.preco)}</strong><button class="btn gold" data-vehicle="${safe(v.id)}">Tenho interesse →</button></div></article>`).join(''):'<div class="catalog-empty">Nenhum veículo disponível para este filtro.</div>';
+    $('client-cards').innerHTML=list.length?list.map(v=>{
+      const img=Photos.resolve(v);
+      const credit=img.kind==='reference'?'<span class="photo-credit">Referência: '+safe(img.description)+'. <a href="'+safe(img.source)+'" target="_blank" rel="noopener noreferrer">Créditos: '+safe(img.credit)+' · '+safe(img.license)+'</a></span>':img.kind==='missing'?'<span class="photo-credit">Foto não cadastrada para este modelo.</span>':'<span class="photo-credit">Fotografia fornecida pelo anunciante.</span>';
+      return `<article class="vehicle-card"><div class="photo-wrap"><img class="vehicle-photo" src="${safe(img.url)}" alt="${safe(img.caption)}" title="${safe(img.caption)}" onerror="this.onerror=null;this.src='assets/photos/sem-foto.svg';this.alt='Foto indisponível';" loading="lazy"><span class="stock-tag">● Disponível</span></div><div class="vehicle-detail"><h3>${safe(v.marca+' '+v.modelo)}</h3><span class="vehicle-meta">${safe(v.ano)} · ${safe(v.categoria)}</span><strong class="vehicle-price">${cash(v.preco)}</strong>${credit}<button class="btn gold" data-vehicle="${safe(v.id)}">Tenho interesse →</button></div></article>`;
+    }).join(''):'<div class="catalog-empty">Nenhum veículo disponível para este filtro.</div>';
   }
   function renderRequests(){
     const names=Object.fromEntries([...cars,...demoInventory,...window.StockCore.DEMO].map(v=>[v.id,`${v.marca} ${v.modelo}`]));

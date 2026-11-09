@@ -17,8 +17,8 @@
     return C.DEMO.map(v=>({...v}));
   };
   let vehicles=isDemo?initial():[]; let editing=null;
-  const images=['assets/photos/suv-azul.jpg','assets/photos/suv-prata.jpg','assets/photos/suv-executivo.jpg'];
-  const photo=v=>/^https:\/\//i.test(v.imagem_url||'')?v.imagem_url:images[[...v.id].reduce((n,c)=>n+c.charCodeAt(0),0)%images.length];
+  const Photos=window.AutoStockPhotos;
+  const photo=v=>Photos.resolve(v);
   function dbRow(v){return {...v, venda:v.venda||null, imagem_url:v.imagem_url||null};}
   async function putVehicle(v){if(isDemo)return;const {error}=await ctx.client.from('vehicles').upsert(dbRow(v));if(error)throw error;}
   async function deleteVehicle(id){if(isDemo)return;const {error}=await ctx.client.from('vehicles').delete().eq('id',id);if(error)throw error;}
@@ -73,7 +73,8 @@
     el('empty-state').hidden=filtered.length!==0;
     el('vehicle-table').innerHTML=filtered.map(v=>{
       const badge=v.status==='Disponível'?'available':v.status==='Reservado'?'reserved':'sold';
-      return `<tr><td><div class="vehicle-line"><img class="vehicle-thumb" src="${safe(photo(v))}" alt="Foto ilustrativa do veículo" loading="lazy"><span><strong>${safe(v.marca)} ${safe(v.modelo)}</strong><small>${safe(v.id)}</small></span></div></td><td>${v.ano}</td><td>${safe(v.categoria)}</td><td>${safe(money(v.preco))}</td><td><span class="status ${badge}">${safe(v.status)}</span></td><td><div class="row-actions"><button class="mini-button" data-action="edit" data-id="${safe(v.id)}">Editar</button><button class="mini-button danger" data-action="delete" data-id="${safe(v.id)}">Excluir</button></div></td></tr>`;
+      const img=photo(v);
+      return `<tr><td><div class="vehicle-line"><img class="vehicle-thumb" src="${safe(img.url)}" alt="${safe(img.caption)}" title="${safe(img.caption)}" onerror="this.onerror=null;this.src=this.dataset.fallback;" data-fallback="assets/photos/sem-foto.svg" loading="lazy"><span><strong>${safe(v.marca)} ${safe(v.modelo)}</strong><small>${safe(v.id)}</small>${img.kind==="reference"?`<small><a href="${safe(img.source)}" target="_blank" rel="noopener noreferrer">Créditos da foto</a></small>`:img.kind==="missing"?"<small>Foto não cadastrada</small>":""}</span></div></td><td>${v.ano}</td><td>${safe(v.categoria)}</td><td>${safe(money(v.preco))}</td><td><span class="status ${badge}">${safe(v.status)}</span></td><td><div class="row-actions"><button class="mini-button" data-action="edit" data-id="${safe(v.id)}">Editar</button><button class="mini-button danger" data-action="delete" data-id="${safe(v.id)}">Excluir</button></div></td></tr>`;
     }).join('');
   }
   function openForm(id){
@@ -86,6 +87,7 @@
     el('vehicle-dialog').showModal();
   }
   el('new-vehicle').addEventListener('click',()=>openForm());
+  el('search-model-photo').addEventListener('click',()=>{const f=el('vehicle-form');window.open(Photos.searchUrl({marca:f.elements.marca.value,modelo:f.elements.modelo.value,ano:f.elements.ano.value}),'_blank','noopener,noreferrer');});
   el('close-dialog').addEventListener('click',()=>el('vehicle-dialog').close());
   el('cancel-dialog').addEventListener('click',()=>el('vehicle-dialog').close());
   el('vehicle-form').addEventListener('submit',async ev=>{
