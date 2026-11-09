@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="pt-BR" class="auth-pending">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b1020">
+  <meta name="description" content="AutoStock Analytics: sistema demonstrativo de estoque de veículos e indicadores comerciais.">
+  <title>AutoStock Analytics | Gestão Inteligente de Veículos</title>
+  <link rel="stylesheet" href="assets/styles.css"><link rel="stylesheet" href="assets/admin-extra.css">
+  <script defer src="assets/core.js"></script>
+  <script defer src="assets/config.js"></script><script defer src="assets/auth.js"></script><script defer src="assets/app.js"></script><script defer src="assets/admin-requests.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Navegação principal">
+      <a class="brand" href="index.html"><span class="brand-mark">A<span>+</span></span><span><strong>AUTOSTOCK</strong><small>ANALYTICS</small></span></a>
+      <span class="nav-caption">PAINEL DE GESTÃO</span>
+      <a class="nav-link current" href="#visao-geral"><span aria-hidden="true">▦</span> Visão geral</a>
+      <a class="nav-link" href="#estoque"><span aria-hidden="true">▤</span> Estoque</a>
+      <a class="nav-link" href="#analises"><span aria-hidden="true">◴</span> Análises</a><a class="nav-link" href="#movimentacoes"><span aria-hidden="true">▥</span> Compras e vendas</a><a class="nav-link" href="#solicitacoes"><span aria-hidden="true">✉</span> Solicitações</a><a class="nav-link" href="index.html"><span aria-hidden="true">↗</span> Página inicial</a>
+      <div class="sidebar-bottom"><span class="dot"></span> <span data-auth-mode>Validando acesso</span><small>Gestão de veículos e resultados</small><button id="admin-logout" class="button subtle" style="margin-top:16px;width:100%">Sair da conta</button></div>
+    </aside>
+    <div class="main-area">
+      <header class="topbar"><button id="menu-toggle" class="icon-button menu" aria-label="Abrir menu">☰</button><div class="breadcrumb">Gestão de veículos <span>/</span> <strong>Dashboard</strong></div><span class="topbar-tag" data-auth-mode>VALIDANDO ACESSO</span></header>
+      <main>
+        <section class="hero" id="visao-geral">
+          <div><div class="eyebrow"><span class="eyebrow-dot"></span> INTELIGÊNCIA COMERCIAL</div><h1>Visão completa do seu <span>estoque.</span></h1><p>Controle veículos, acompanhe indicadores e transforme dados em decisões.</p><div class="hero-actions"><button id="new-vehicle" class="button primary">＋ Novo veículo</button><button id="export-csv" class="button ghost">↓ Exportar CSV</button></div></div>
+          <div class="hero-art"><img class="admin-hero-photo" src="assets/photos/suv-prata.jpg" alt="Veículo em uma concessionária moderna"></div>
+        </section>
+        <p class="admin-demo-info" data-demo-warning hidden>Modo demonstração: informações fictícias, sem controle real de acesso ou dados compartilhados. Para login real e banco de dados, configure o Supabase.</p><section class="kpi-grid" aria-label="Indicadores principais">
+          <article class="kpi-card"><span>Veículos em estoque</span><strong id="kpi-estoque">—</strong><small id="kpi-estoque-caption">Disponíveis + reservados</small><div class="kpi-accent blue"></div></article>
+          <article class="kpi-card"><span>Capital em estoque</span><strong id="kpi-capital">—</strong><small>Custos de aquisição registrados</small><div class="kpi-accent cyan"></div></article>
+          <article class="kpi-card"><span>Receita realizada</span><strong id="kpi-receita">—</strong><small>Veículos vendidos</small><div class="kpi-accent violet"></div></article>
+          <article class="kpi-card"><span>Lucro bruto realizado</span><strong id="kpi-lucro">—</strong><small id="kpi-margem">Margem bruta das vendas</small><div class="kpi-accent green"></div></article>
+        </section>
+        <section class="charts" id="analises">
+          <article class="panel"><div class="panel-heading"><div><div class="section-label">RESULTADOS</div><h2>Receita mensal de vendas</h2></div><span class="tag">R$</span></div><div id="monthly-chart" class="bar-chart" role="img" aria-label="Gráfico de receita mensal"></div><p class="muted-note">Considera a data de venda dos veículos com status Vendido.</p></article>
+          <article class="panel"><div class="panel-heading"><div><div class="section-label">DISTRIBUIÇÃO</div><h2>Situação do estoque</h2></div><span class="tag">Unidades</span></div><div class="breakdown"><div class="ring" id="status-ring"><span id="ring-value">0<small>VEÍCULOS</small></span></div><div class="legend"><div><span class="legend-dot available"></span> Disponíveis <strong id="count-available">0</strong></div><div><span class="legend-dot reserved"></span> Reservados <strong id="count-reserved">0</strong></div><div><span class="legend-dot sold"></span> Vendidos <strong id="count-sold">0</strong></div></div></div><p class="muted-note" id="extra-metrics">Ticket médio: —</p></article>
+        </section>
+        <section class="panel purchase-panel" id="movimentacoes"><div class="panel-heading"><div><div class="section-label">GESTÃO FINANCEIRA</div><h2>Compras e vendas de veículos</h2><p>Aquisições registradas pelos custos de compra; vendas pela receita realizada.</p></div></div><div class="purchase-summary"><div><small>Compras registradas (custo de aquisição)</small><strong id="purchase-total">—</strong></div><div><small>Veículos adquiridos</small><strong id="purchase-count">—</strong></div><div><small>Vendas concluídas</small><strong id="sales-count">—</strong></div></div><h3>Investimento mensal em compras</h3><div id="purchase-chart" class="bar-chart" role="img" aria-label="Gráfico de aquisição de veículos por mês"></div></section><section class="panel requests-panel" id="solicitacoes"><div class="panel-heading"><div><div class="section-label">RELACIONAMENTO</div><h2>Solicitações de clientes</h2><p>Organize interesses e conclua vendas após confirmar a negociação.</p></div><button class="button subtle" id="reload-requests">Atualizar solicitações</button></div><div id="admin-requests-list" class="requests-table"></div></section><section class="panel stock-panel" id="estoque"><div class="panel-heading stock-heading"><div><div class="section-label">INVENTÁRIO</div><h2>Gerenciamento de veículos</h2><p>Pesquise, filtre e edite seu catálogo.</p></div><div class="toolbar-right"><label class="upload-label" for="import-csv">↑ Importar CSV</label><input type="file" accept=".csv,text/csv" id="import-csv" hidden><button id="reset-demo" class="button subtle">Restaurar demo</button></div></div><div class="filters"><input id="search" type="search" placeholder="Buscar marca, modelo ou ID..." aria-label="Buscar veículos"><select id="filter-status" aria-label="Filtrar por situação"><option value="">Todos os status</option><option>Disponível</option><option>Reservado</option><option>Vendido</option></select><select id="filter-brand" aria-label="Filtrar por marca"><option value="">Todas as marcas</option></select><span class="record-count" id="record-count">—</span></div><div class="table-scroll"><table><thead><tr><th>VEÍCULO</th><th>ANO</th><th>CATEGORIA</th><th>PREÇO</th><th>SITUAÇÃO</th><th>AÇÕES</th></tr></thead><tbody id="vehicle-table"></tbody></table></div><div id="empty-state" class="empty" hidden>Nenhum veículo encontrado para os filtros.</div></section>
+        <footer>AutoStock Analytics · Projeto demonstrativo independente · Desenvolvido para estudo e portfólio</footer>
+      </main>
+    </div>
+  </div>
+  <dialog id="vehicle-dialog"><form id="vehicle-form" novalidate><div class="modal-heading"><div><div class="section-label">CADASTRO</div><h2 id="modal-title">Novo veículo</h2></div><button type="button" id="close-dialog" class="icon-button" aria-label="Fechar">×</button></div><div class="form-grid"><label>Marca<input name="marca" required maxlength="50" placeholder="Ex.: Toyota"></label><label>Modelo<input name="modelo" required maxlength="80" placeholder="Ex.: Corolla"></label><label>Ano<input name="ano" required type="number" min="1950" max="2100"></label><label>Categoria<select name="categoria"><option>SUV</option><option>Sedã</option><option>Hatch</option><option>Picape</option><option>Outros</option></select></label><label>Preço de venda (R$)<input name="preco" required type="number" min="0" step="0.01"></label><label>Custo de aquisição (R$)<input name="custo" required type="number" min="0" step="0.01"></label><label>Situação<select name="status"><option>Disponível</option><option>Reservado</option><option>Vendido</option></select></label><label>Data de venda<input name="venda" type="date"></label><label class="span2">URL da foto (https://, opcional)<input name="imagem_url" type="url" placeholder="https://..."></label></div><p class="form-notice">O lucro bruto considera preço de venda menos custo de aquisição. Impostos e despesas adicionais não estão incluídos.</p><div class="modal-actions"><button type="button" id="cancel-dialog" class="button subtle">Cancelar</button><button class="button primary" type="submit">Salvar veículo</button></div></form></dialog>
+  <div id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
