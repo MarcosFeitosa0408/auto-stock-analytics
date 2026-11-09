@@ -13,9 +13,7 @@
   function toast(msg){$('client-toast').textContent=msg;$('client-toast').classList.add('show');setTimeout(()=>$('client-toast').classList.remove('show'),3800);}
   async function load(){
     if(ctx.mode==='demo'){
-      try { const saved=JSON.parse(localStorage.getItem(inventoryKey)||'null');
-        demoInventory=(Array.isArray(saved)?saved:window.StockCore.DEMO).map(window.StockCore.normalizeVehicle);
-      } catch { demoInventory=window.StockCore.DEMO.map(v=>({...v})); }
+      demoInventory=window.StockCore.loadDemoInventory(localStorage);
       cars=demoInventory.filter(v=>v.status==='Disponível').map(v=>({...v}));
       try{const arr=JSON.parse(localStorage.getItem(key)||'[]');requests=Array.isArray(arr)?arr:[];}catch{requests=[];}
     }else{

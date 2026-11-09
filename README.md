@@ -111,3 +111,5 @@ O catálogo associa referências fotográficas do Wikimedia Commons a cada um do
 A base de demonstração passou de 12 para **24 veículos fictícios**, separados por categoria (SUV, Hatch, Sedã, Picape) e marca. Modelos adicionais incluem Toyota Corolla Cross, Honda HR-V, Jeep Renegade, Hyundai Creta, Fiat Argo, Mobi, Strada, Toro, Chevrolet Montana, Fiat Cronos, Renault Kwid e Peugeot 208. Todas as imagens são **referências ilustrativas de marca/modelo**, com fonte e licença em [FOTOGRAFIAS_VEICULOS.md](docs/FOTOGRAFIAS_VEICULOS.md).
 
 Se o navegador ainda tiver exatamente a antiga amostra de até 12 veículos, o portal acrescenta os novos registros sem perder alterações dos veículos existentes. Estoques personalizados/importados não recebem registros fictícios automaticamente. O botão **Restaurar demo** restaura os 24 registros e substitui o estoque local demonstrativo.
+
+**Atualização do catálogo no navegador:** use Ctrl+F5 para recarregar os scripts. A atualização de amostras anteriores ocorre ao abrir os portais demonstrativos; o modo Supabase não é preenchido com veículos fictícios automaticamente.

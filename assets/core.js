@@ -18,8 +18,7 @@
     { id: 'AV-1009', marca:'Renault', modelo:'Duster Iconic', ano:2021, categoria:'SUV', preco:94900, custo:81300, status:'Disponível', cadastro:'2026-09-04', venda:'' },
     { id: 'AV-1010', marca:'Toyota', modelo:'Hilux SRX', ano:2022, categoria:'Picape', preco:249900, custo:216000, status:'Reservado', cadastro:'2026-08-19', venda:'' },
     { id: 'AV-1011', marca:'Volkswagen', modelo:'Polo Highline', ano:2024, categoria:'Hatch', preco:104900, custo:88900, status:'Vendido', cadastro:'2026-06-25', venda:'2026-07-30' },
-    { id: 'AV-1012', marca:'Chevrolet', modelo:'Tracker LTZ', ano:2023, categoria:'SUV', preco:132900, custo:111000, status:'Disponível', cadastro:'2026-09-01', venda:'' }
-,
+    { id: 'AV-1012', marca:'Chevrolet', modelo:'Tracker LTZ', ano:2023, categoria:'SUV', preco:132900, custo:111000, status:'Disponível', cadastro:'2026-09-01', venda:'' },
     { id: 'AV-1013', marca:'Toyota', modelo:'Corolla Cross XRE', ano:2022, categoria:'SUV', preco:158900, custo:139200, status:'Disponível', cadastro:'2026-08-12', venda:'' },
     { id: 'AV-1014', marca:'Honda', modelo:'HR-V EX', ano:2022, categoria:'SUV', preco:127900, custo:112500, status:'Disponível', cadastro:'2026-09-03', venda:'' },
     { id: 'AV-1015', marca:'Jeep', modelo:'Renegade Longitude', ano:2022, categoria:'SUV', preco:112900, custo:98700, status:'Disponível', cadastro:'2026-08-25', venda:'' },

@@ -11,11 +11,7 @@
   const shortMoney = n => n >= 1e6 ? `R$ ${(n/1e6).toLocaleString('pt-BR',{maximumFractionDigits:1})} mi` : n >= 1000 ? `R$ ${(n/1000).toLocaleString('pt-BR',{maximumFractionDigits:0})} mil` : money(n);
   const safe = C.escapeHTML;
   const today = () => new Date().toISOString().slice(0,10);
-  const initial = () => {
-    try { const raw=JSON.parse(localStorage.getItem(STORAGE)); if(Array.isArray(raw)) return raw.map(v=>({...C.normalizeVehicle(v),imagem_url:v.imagem_url||''})); }
-    catch(e){console.warn('Dados locais inválidos; demo restaurada',e);}
-    return C.DEMO.map(v=>({...v}));
-  };
+  const initial = () => C.loadDemoInventory(localStorage);
   let vehicles=isDemo?initial():[]; let editing=null;
   const Photos=window.AutoStockPhotos;
   const photo=v=>Photos.resolve(v);
