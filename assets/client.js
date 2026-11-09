@@ -21,11 +21,17 @@
       if(a.error)throw a.error;if(b.error)throw b.error;
       cars=a.data||[];requests=b.data||[];
     }
-    render();renderRequests();
+    populateBrands();render();renderRequests();
+  }
+  function populateBrands(){
+    const selected=$('client-brand').value;
+    const brands=[...new Set(cars.map(v=>v.marca))].sort((a,b)=>a.localeCompare(b,'pt-BR'));
+    $('client-brand').innerHTML='<option value="">Todas as marcas</option>'+brands.map(x=>'<option value="'+safe(x)+'">'+safe(x)+'</option>').join('');
+    $('client-brand').value=brands.includes(selected)?selected:'';
   }
   function render(){
-    const q=$('client-search').value.trim().toLocaleLowerCase('pt-BR');const cat=$('client-category').value;
-    const list=cars.filter(v=>(!q||`${v.marca} ${v.modelo}`.toLocaleLowerCase('pt-BR').includes(q))&&(!cat||v.categoria===cat));
+    const q=$('client-search').value.trim().toLocaleLowerCase('pt-BR');const cat=$('client-category').value;const brand=$('client-brand').value;
+    const list=cars.filter(v=>(!q||`${v.marca} ${v.modelo}`.toLocaleLowerCase('pt-BR').includes(q))&&(!cat||v.categoria===cat)&&(!brand||v.marca===brand));
     if($('client-sort').value==='menor')list.sort((a,b)=>a.preco-b.preco);
     if($('client-sort').value==='maior')list.sort((a,b)=>b.preco-a.preco);
     $('client-count').textContent=`${list.length} veículo(s) encontrado(s)`;
@@ -56,7 +62,7 @@
       renderRequests();toast('Solicitação registrada. Consulte o acompanhamento abaixo.');$('meus-pedidos').scrollIntoView({behavior:'smooth'});
     }catch(err){toast('Não foi possível registrar: '+err.message);}finally{b.disabled=false;}
   });
-  ['client-search','client-category','client-sort'].forEach(id=>$(id).addEventListener(id==='client-search'?'input':'change',render));
+  ['client-search','client-category','client-brand','client-sort'].forEach(id=>$(id).addEventListener(id==='client-search'?'input':'change',render));
   $('logout').addEventListener('click',()=>window.AutoAuth.logout());
   window.addEventListener('storage',e=>{if(ctx.mode==='demo' && (e.key===inventoryKey||e.key===key))load().catch(console.error);});
   try{await load();}catch(err){console.error(err);$('client-count').textContent='Erro ao carregar o catálogo.';$('client-cards').innerHTML='<div class="catalog-empty">Não foi possível carregar os veículos. Confira a configuração do banco de dados e as permissões de acesso.</div>';}

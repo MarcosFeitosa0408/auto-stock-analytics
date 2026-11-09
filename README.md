@@ -113,3 +113,5 @@ A base de demonstração passou de 12 para **24 veículos fictícios**, separado
 Se o navegador ainda tiver exatamente a antiga amostra de até 12 veículos, o portal acrescenta os novos registros sem perder alterações dos veículos existentes. Estoques personalizados/importados não recebem registros fictícios automaticamente. O botão **Restaurar demo** restaura os 24 registros e substitui o estoque local demonstrativo.
 
 **Atualização do catálogo no navegador:** use Ctrl+F5 para recarregar os scripts. A atualização de amostras anteriores ocorre ao abrir os portais demonstrativos; o modo Supabase não é preenchido com veículos fictícios automaticamente.
+
+No Portal do Cliente, os filtros de **marca** e **categoria** são independentes: selecionar Toyota + SUV mostra apenas SUVs Toyota disponíveis.
